@@ -1,9 +1,9 @@
 package graph
 
 import (
+	"demo-go/graph/altair"
 	"demo-go/graph/generated"
 	"demo-go/graph/gqlcore"
-	"demo-go/graph/graphiql"
 	"fmt"
 	"log"
 	"net/http"
@@ -53,8 +53,8 @@ func StartGraphQLServer() {
 		Cache: lru.New(100),
 	})
 
-	r.Handle("/", graphiql.Handler("GraphQL playground", "/graphql"))
-	r.Handle("/static/*", graphiql.Static())
+	r.Handle("/", altair.Handler("GraphQL playground", "/graphql"))
+	// r.Handle("/static/*", graphiql.Static())
 	r.Handle("/graphql", srv)
 
 	fmt.Println(`graphiql [http://localhost:8000]`)
