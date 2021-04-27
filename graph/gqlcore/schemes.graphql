@@ -1,0 +1,39 @@
+type Query {
+  todos: [Todo!]!
+  baz: Boolean!
+}
+
+type Subscription {
+  baz(id: ID!): String!
+}
+
+type Mutation {
+  createTodo(input: NewTodo!): Todo! @hasRole(role: ADMIN)
+  singleUpload(file: Upload!): Boolean!
+}
+
+# models
+
+type Todo {
+  id: ID!
+  text: String!
+  done: Boolean!
+  user: User!
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+}
+
+# inputs
+
+input NewTodo {
+  text: String!
+  userId: String!
+}
+
+# scalar
+
+scalar Upload
